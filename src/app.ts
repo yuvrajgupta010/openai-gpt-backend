@@ -8,8 +8,24 @@ import cors from "cors";
 config();
 const app = express();
 
+//allowed origins
+let origins: Array<string>;
+if (process.env.SERVER_ENV === "PROD") {
+  origins = [
+    "http://openai-gpt.yuvrajgupta.in",
+    "https://openai-gpt.yuvrajgupta,in",
+  ];
+} else {
+  origins = ["http://localhost:5173", "http://localhost:3000"];
+}
+
 //middlewares
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(
+  cors({
+    origin: origins,
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
@@ -24,6 +40,6 @@ app.get("/health-check", (req, res) => {
   };
 });
 
-app.use("/api/v1", appRouter);
+app.use("/v1", appRouter);
 
 export default app;
