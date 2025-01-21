@@ -30,14 +30,16 @@ app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
 //remove it in production
-app.use(morgan("dev"));
+if (process.env.SERVER_ENV === "DEV") {
+  app.use(morgan("dev"));
+}
 
 app.get("/health-check", (req, res) => {
-  return {
+  return res.json({
     status: "OK",
     message: "Server is running",
     timestamp: new Date().toISOString(),
-  };
+  });
 });
 
 app.use("/v1", appRouter);
