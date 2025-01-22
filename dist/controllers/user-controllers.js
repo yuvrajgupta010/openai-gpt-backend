@@ -36,7 +36,7 @@ export const userSignup = async (req, res, next) => {
         expires.setDate(expires.getDate() + 7);
         res.cookie(COOKIE_NAME, token, {
             path: "/",
-            domain: domain,
+            // domain: domain,
             expires,
             httpOnly: true,
             signed: true,
