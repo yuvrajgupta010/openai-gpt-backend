@@ -12,8 +12,8 @@ const app = express();
 let origins: Array<string>;
 if (process.env.SERVER_ENV === "PROD") {
   origins = [
-    "https://openai-gpt.yuvrajgupta.in",
     "http://openai-gpt.yuvrajgupta.in",
+    "https://openai-gpt.yuvrajgupta.in",
   ];
 } else {
   origins = ["http://localhost:5173", "http://localhost:3000"];
@@ -39,6 +39,7 @@ app.get("/health-check", (req, res) => {
     status: "OK",
     message: "Server is running",
     timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
   });
 });
 
