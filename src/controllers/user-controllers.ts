@@ -5,7 +5,7 @@ import { createToken } from "../utils/token-manager.js";
 import { COOKIE_NAME } from "../utils/constants.js";
 
 const domain =
-  process.env.SERVER_ENV === "PROD" ? "yuvrajgupta.in" : "localhost";
+  process.env.SERVER_ENV === "PROD" ? ".yuvrajgupta.in" : "localhost";
 
 export const getAllUsers = async (
   req: Request,

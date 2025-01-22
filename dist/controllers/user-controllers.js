@@ -2,7 +2,7 @@ import User from "../models/User.js";
 import { hash, compare } from "bcrypt";
 import { createToken } from "../utils/token-manager.js";
 import { COOKIE_NAME } from "../utils/constants.js";
-const domain = process.env.SERVER_ENV === "PROD" ? "yuvrajgupta.in" : "localhost";
+const domain = process.env.SERVER_ENV === "PROD" ? ".yuvrajgupta.in" : "localhost";
 export const getAllUsers = async (req, res, next) => {
     try {
         //get all users
