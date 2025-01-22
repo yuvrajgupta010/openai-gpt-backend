@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import { hash, compare } from "bcrypt";
 import { createToken } from "../utils/token-manager.js";
 import { COOKIE_NAME } from "../utils/constants.js";
+const origin = process.env.SERVER_ENV === "PROD" ? "openai-gpt.yuvrajgupta.in" : "localhost";
 export const getAllUsers = async (req, res, next) => {
     try {
         //get all users
@@ -26,7 +27,7 @@ export const userSignup = async (req, res, next) => {
         // create token and store cookie
         res.clearCookie(COOKIE_NAME, {
             httpOnly: true,
-            domain: "localhost",
+            domain: origin,
             signed: true,
             path: "/",
         });
@@ -35,7 +36,7 @@ export const userSignup = async (req, res, next) => {
         expires.setDate(expires.getDate() + 7);
         res.cookie(COOKIE_NAME, token, {
             path: "/",
-            domain: "localhost",
+            domain: origin,
             expires,
             httpOnly: true,
             signed: true,
@@ -64,7 +65,7 @@ export const userLogin = async (req, res, next) => {
         // create token and store cookie
         res.clearCookie(COOKIE_NAME, {
             httpOnly: true,
-            domain: "localhost",
+            domain: origin,
             signed: true,
             path: "/",
         });
@@ -73,7 +74,7 @@ export const userLogin = async (req, res, next) => {
         expires.setDate(expires.getDate() + 7);
         res.cookie(COOKIE_NAME, token, {
             path: "/",
-            domain: "localhost",
+            domain: origin,
             expires,
             httpOnly: true,
             signed: true,
@@ -118,7 +119,7 @@ export const userLogout = async (req, res, next) => {
         }
         res.clearCookie(COOKIE_NAME, {
             httpOnly: true,
-            domain: "localhost",
+            domain: origin,
             signed: true,
             path: "/",
         });
