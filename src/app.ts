@@ -23,6 +23,9 @@ if (process.env.SERVER_ENV === "PROD") {
 app.use(
   cors({
     origin: origins,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
     credentials: true,
   })
 );
