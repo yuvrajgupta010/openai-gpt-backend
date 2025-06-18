@@ -8,7 +8,7 @@
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\" ",
     "build": "tsc",
     "start": "pm2 start dist/index.js -i max --name openai-gpt",
-    "start:light": "pm2 start dist/index.js --name openai-gpt"
+    "start:lite": "pm2 start dist/index.js --name openai-gpt"
   },
   "keywords": [],
   "author": "",
